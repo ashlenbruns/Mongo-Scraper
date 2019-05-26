@@ -1,0 +1,42 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="navbar-brand mx-2">Mongo Scraper</div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ml-4" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+        <a class="nav-item nav-link active mx-2" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link mx-2" id="btn-favorites" href="/articles">Saved Articles</a>
+        <button class="btn btn-outline-info mx-2 my-2 my-sm-0" id="btn-scrape" type="submit">Scrape Latest Articles</button>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid text-center">
+    <div class="container">
+    <h1 class="display-4">Mongo Scraper</h1>
+    <p class="lead">BROUGHT TO YOU BY - the ONION, News in Brief.</p>
+    </div>
+</div>
+
+<div id="row-content" class="row mb-4 justify-content-center">
+    <div id="col-content" class="col-sm-8 px-0">
+        {{#unless articles}}
+            <div class="jumbotron text-center">
+                <h2>You have No Saved Articles</h2>
+            </div>
+        {{/unless}}
+            {{#each articles}}
+                <div class="card mb-3">
+                    <div id="article-{{this.id}}" class="card-header bg-info text-white" data-saved={{this.saved}}>
+                        <h5 class="headings">{{this.title}}</h5>
+                    </div>
+                        <div class="card-body">
+                            <a href="{{this.link}}" target="_blank">{{this.link}}</a>
+                            <br>
+                            <button id="{{this.id}}" class="mark-saved btn btn-dark text-white p-2 m-3" type="submit">{{this.buttonTxt}}</a>
+                        </div>
+                </div>
+            {{/each}}
+    </div>
+</div>
